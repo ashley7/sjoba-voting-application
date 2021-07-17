@@ -36,4 +36,59 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function saveUser($name,$phone_number,$pin,$user_type)
+    {
+        $saveUser = new User();        
+
+        $saveUser->name = $name;        
+
+        $checkUser = User::where('phone_number',$phone_number)->count();
+
+        $saveUser->phone_number = $phone_number;
+
+        $saveUser->email_verified_at = now();
+
+        $saveUser->password = \Hash::make($pin);
+
+        $saveUser->pin = $pin;
+
+        $saveUser->user_type = $user_type;
+
+        $saveUser->remember_token = \Str::random(32);
+
+        if($checkUser == 0){
+
+            $saveUser->save();
+
+            return $saveUser;
+
+        } else{
+            return [];
+        }
+    }
+
+
+    public static function validatePhoneNumber($phone)
+    {
+        $phone_number = "";
+
+        if ($phone[0]=="+") {
+
+           $phone_number=$phone;
+
+        }elseif ($phone[0]=="0") {
+
+            $out = ltrim($phone, "0");
+
+            $phone_number="+256".$out;
+
+        }else{
+
+            $phone_number=$phone;
+            
+        }
+
+        return $phone_number;
+    }
 }
