@@ -82,7 +82,7 @@ class VoteController extends Controller
 
             try {
 
-                $gateway    = new AfricasTalkingGateway(env("SMS-USERNAME"), env("SMS-APIKEY"));
+                $gateway    = new AfricasTalkingGateway(env("SMSUSERNAME"), env("SMSAPIKEY"));
 
                 $gateway->sendMessage($reciever, $message);
                          
