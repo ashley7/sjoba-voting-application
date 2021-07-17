@@ -38,6 +38,8 @@ class VoteController extends Controller
     public function create()
     {
 
+        if(\Auth::user()->user_type != "admin") return redirect()->route("voters.index");
+
         $data = [
 
             'title' => "Create a voter",
@@ -155,6 +157,6 @@ class VoteController extends Controller
      */
     public function destroy($vote)
     {
-       
+
     }
 }
