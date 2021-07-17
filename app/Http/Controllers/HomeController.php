@@ -7,6 +7,7 @@ use App\CandidateCategory;
 use App\Candidate;
 use App\VoteProcess;
 use App\Vote;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -54,7 +55,7 @@ class HomeController extends Controller
 
             'readCandidateCategories' => $readCandidateCategory,
 
-            'title' => "BULLOT PAPER",
+            'title' => "BALLOT PAPER",
 
             'voting_time' => $voting_time
 
@@ -96,6 +97,35 @@ class HomeController extends Controller
         $saveVote->save();
 
         return $message;
+         
+    }
+
+    public function thoseThatVoted()
+    {
+
+        $check = Vote::select('user_id')->get();
+
+        $users = [];
+
+        foreach ($check as $key => $value) {
+
+            $users[] = $value->user_id;
+
+        }
+
+        $usersThatVoted = array_unique($users);
+
+        $voters = User::whereIn('id',$usersThatVoted)->paginate(100);     
+
+        $data = [
+
+            'title' => "List of voters that voted",
+
+             'voters' => $voters
+
+        ];
+
+        return view("voter.list")->with($data);
          
     }
 }

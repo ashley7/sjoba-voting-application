@@ -68,6 +68,10 @@
                                         {{ __('View voters register') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="/voters_that_voted">
+                                        {{ __('Voters that voted') }}
+                                    </a>
+
                                     
                                 </div>
                             </li>
@@ -97,7 +101,9 @@
 
                                     <a class="dropdown-item" href="{{ route('candidate.index') }}">
                                         {{ __('View Candidates') }}
-                                    </a>
+                                    </a> 
+
+                                  
                                     
                                 </div>
                             </li>

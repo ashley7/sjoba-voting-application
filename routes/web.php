@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth', 'middleware'=>'verified'], function () {
 
     Route::post('vote','HomeController@vote');
 
+    Route::get('voters_that_voted','HomeController@thoseThatVoted');
+
 });
 
  
