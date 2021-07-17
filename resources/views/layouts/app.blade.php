@@ -38,6 +38,14 @@
 
                         @if(!Auth::guest())
 
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link" href="/home">
+                                   Home
+                                </a>
+
+                            </li>
+
                            <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -84,6 +92,15 @@
                                     </a>
                                     
                                 </div>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link" href="/bullot_paper">
+                                   Bullot paper
+                                </a>
+
                             </li>
 
 
@@ -175,7 +192,9 @@
             $('#myTable').DataTable();
         } );
 
-        @stack('scripts')
+        
     </script>
+
+    @stack('scripts')
 </body>
 </html>

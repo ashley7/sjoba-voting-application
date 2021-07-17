@@ -35,6 +35,8 @@ class CandidateCategoryController extends Controller
     public function create()
     {
 
+        if(\Auth::user()->user_type != "admin") return redirect()->route("candidate_category.index");
+
         $data = [
 
             'title' => "Create a position",        

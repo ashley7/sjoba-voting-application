@@ -33,3 +33,7 @@ Route::resource('voters','VoteController');
 Route::resource('candidate_category','CandidateCategoryController');
 
 Route::resource('candidate','CandidateController');
+
+Route::get('bullot_paper','HomeController@bullotPaper');
+
+Route::post('vote','HomeController@vote');

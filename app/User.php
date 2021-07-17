@@ -91,4 +91,12 @@ class User extends Authenticatable
 
         return $phone_number;
     }
+
+    public static function uploadFile($file)
+    {
+       $destinationPath = public_path('files');
+       $file_url =\Str::random(12).''.time().'.'.$file->getClientOriginalExtension();
+       $file->move($destinationPath,$file_url);
+       return $file_url;
+    }
 }
