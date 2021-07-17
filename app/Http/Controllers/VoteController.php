@@ -157,5 +157,13 @@ class VoteController extends Controller
     public function destroy($vote)
     {
 
+        try {
+
+            User::destroy($vote);
+            
+        } catch (\Exception $e) {}
+
+        return back();
+
     }
 }

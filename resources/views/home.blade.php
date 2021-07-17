@@ -6,9 +6,21 @@
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <h2>{{ $title }}</h2>
             <hr>
+
+
+                <form method="POST" action="{{  route('vote_control.destroy','all')  }}">
+                    @csrf
+                    {{ method_field('DELETE') }}
+
+                    <button onclick="return confirm('Are you sure you want to delete all the votes');" class="btn btn-danger">Delete all votes</button>
+
+                    <hr>
+
+                </form>
             <div class="card">
                 <div class="card-body">
 
+                    <span class="name_size">Total Voters: {{ App\User::count() }}</span>
 
                     @foreach($readCandidateCategories as $readCandidateCategory)
 
@@ -19,6 +31,8 @@
                       <h4>{{ $readCandidateCategory->name }}</h4>
 
                     </div>
+
+                    <div class="table-responsive">
 
                       <table class="table">
                             <thead>
@@ -68,6 +82,8 @@
                             </tbody>
                       </table>
 
+                  </div>
+
                      
 
                     @endforeach
@@ -94,11 +110,11 @@
     }
 
     .vote_number{
-        font-size: 70px;
+        font-size: 50px;
     }
 
     .name_size{
-        font-size: 30px;
+        font-size: 20px;
     }
  </style>
 

@@ -9,6 +9,8 @@
                 <hr>
 
                 <div class="card-body">
+
+                    <center> <img src="/images/logo.jpeg" width="20%"></center>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

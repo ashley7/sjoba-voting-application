@@ -9,6 +9,8 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
         <!-- Styles -->
         <style>
             html, body {
@@ -45,7 +47,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 100%;
             }
 
             .links > a {
@@ -59,7 +61,7 @@
             }
 
             #links{
-                font-size: 50px;
+                font-size: 100%;
                 color: #38c172 !important;
             }
 
@@ -86,12 +88,37 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    {{ config('app.name') }}
+                    <img src="/images/logo.jpeg" width="50%">
+                   
                 </div>
+
+                <div class="title m-b-md">
+                    
+                 <strong>  {{ config('app.name') }} 2021 </strong>
+                </div>
+
 
                 <div id="links">
                     <span></span>
                 </div>
+
+                <hr>
+                <div id="more_links">
+
+                     @guest
+                           
+                        <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login to vote') }}</a>                                                   
+                        @else
+
+                        <a class="btn btn-primary" href="/home">{{ __('Vote now') }}</a>
+
+                    @endguest
+
+
+                     
+                </div>
+
+
             </div>
         </div>
 
@@ -108,7 +135,7 @@
                 },
                 success: function(result){
 
-                    $("#links").text("Election time: "+result);
+                    $("#links").text(result);
 
                 }
 
@@ -116,7 +143,7 @@
             
         }
 
-        setInterval(function () { myFunction(); }, 6000);
+        setInterval(function () { myFunction(); }, 4000);
         </script>
     </body>
 </html>

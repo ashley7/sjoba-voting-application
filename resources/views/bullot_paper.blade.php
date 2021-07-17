@@ -24,7 +24,7 @@
 
                     </div>
 
-
+                    <div class="table-responsive">
 
                       <table class="table">
                             <thead>
@@ -93,6 +93,7 @@
                             @endforeach
                             </tbody>
                       </table>
+                  </div>
 
                       <span class="text-info" id="display{{$readCandidateCategory->id}}"></span>
 

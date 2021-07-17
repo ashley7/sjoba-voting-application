@@ -30,7 +30,16 @@
                                     <td>{{ $voter->pin }}</td>
                                   
                                     <td>
-                                        <a href="{{ route('voters.edit',$voter->id) }}" class="btn btn-primary">Edit</a>
+                                        <form method="POST" action="{{ route('voters.destroy',$voter->id) }}">
+                                            @csrf
+                                            {{ method_field("DELETE") }}
+
+                                            <a href="{{ route('voters.edit',$voter->id) }}" class="btn btn-primary">Edit</a>
+
+                                            <button onclick="return confirm('Are you sure you want to delete all this voter');" type="submit" class="btn btn-danger">Delete</button>
+                                            
+                                        </form>
+                                        
                                     </td>
                                 @endif
                               </tr>

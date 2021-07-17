@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Vote;
 use App\VoteProcess;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,19 @@ class VoteProcessController extends Controller
      */
     public function create()
     {
-        return  VoteProcess::votingTime();
+
+        $start_time = VoteProcess::votingTime();
+
+        if(\Str::contains($start_time,"ago")) {
+
+            return "The election started: ".$start_time;
+
+        }else{
+
+            return $start_time." to start the election";
+
+        }
+
     }
 
     /**
@@ -108,6 +121,12 @@ class VoteProcessController extends Controller
      */
     public function destroy(VoteProcess $voteProcess)
     {
-        //
+         try {
+
+            Vote::truncate();
+
+         } catch (\Exception $e) {}
+
+         return back();
     }
 }

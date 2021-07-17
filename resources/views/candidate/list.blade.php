@@ -34,7 +34,7 @@
                                             @csrf
                                             {{ method_field("DELETE") }}
                                             <a href="{{ route('candidate.edit',$candidate->id) }}" class="btn btn-primary">Edit</a>
-                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                            <button onclick="return confirm('Are you sure you want to delete this candidate?');" type="submit" class="btn btn-danger">Remove</button>
                                         </form>
                                         
                                     </td>
