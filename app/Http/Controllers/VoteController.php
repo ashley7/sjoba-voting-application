@@ -77,13 +77,12 @@ class VoteController extends Controller
 
             $message = "Hello ".$save_user->name.", Your SJOBA Voter's account has been created, On the voting day you will use Phone Number: ".$save_user->phone_number." and Pin: ".$save_user->pin." to vote. Do not share your pin. Thank you";
 
-            $apikey     = "3224e85cdff4fd457ab5698395ee0ea3e1d32aaddcf1ca8e42b8ac7d4f42ca99";
-
+ 
             $reciever = User::validatePhoneNumber($save_user->phone_number);   
 
             try {
 
-                $gateway    = new AfricasTalkingGateway("charlesthembo", $apikey);
+                $gateway    = new AfricasTalkingGateway(env("SMS-USERNAME"), env("SMS-APIKEY"));
 
                 $gateway->sendMessage($reciever, $message);
                          
