@@ -29,3 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('voters','VoteController');
+
+Route::resource('candidate_category','CandidateCategoryController');
+
+Route::resource('candidate','CandidateController');

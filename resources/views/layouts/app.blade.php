@@ -60,6 +60,32 @@
                                 </div>
                             </li>
 
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                   Candidates
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
+                                    @if(Auth::user()->user_type == "admin")
+                                    <a class="dropdown-item" href="{{ route('candidate_category.create') }}">
+                                        {{ __('Create a Position') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('candidate.create') }}">
+                                        {{ __('Create a candidate') }}
+                                    </a>
+                                    <hr>
+                                    @endif
+
+                                    <a class="dropdown-item" href="{{ route('candidate.index') }}">
+                                        {{ __('View Candidates') }}
+                                    </a>
+                                    
+                                </div>
+                            </li>
+
 
                         @endif
 

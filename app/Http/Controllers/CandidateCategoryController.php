@@ -14,7 +14,17 @@ class CandidateCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $positions = CandidateCategory::paginate(50);
+
+        $data = [
+
+            'title' => "List of positions",
+
+            'positions' => $positions
+
+        ];
+
+        return view("candidate.category_list")->with($data);
     }
 
     /**
@@ -24,7 +34,15 @@ class CandidateCategoryController extends Controller
      */
     public function create()
     {
-        //
+
+        $data = [
+
+            'title' => "Create a position",        
+
+        ];
+
+        return view("candidate.category")->with($data);
+
     }
 
     /**
@@ -35,7 +53,22 @@ class CandidateCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+
+            'name' => 'required|unique:candidate_categories',
+
+        ];
+
+        $this->validate($request,$rules);
+
+        $saveCandidateCategory = new CandidateCategory();
+
+        $saveCandidateCategory->name = $request->name;
+
+        $saveCandidateCategory->save();
+
+        return redirect()->route('candidate_category.index');
+
     }
 
     /**
@@ -55,9 +88,21 @@ class CandidateCategoryController extends Controller
      * @param  \App\CandidateCategory  $candidateCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(CandidateCategory $candidateCategory)
+    public function edit($candidateCategory)
     {
-        //
+
+        $readCandidateCategory = CandidateCategory::find($candidateCategory);
+
+        $data = [
+
+            'title' => "Edit position",
+
+            'readCandidateCategory' => $readCandidateCategory
+
+        ];
+
+        return view("candidate.edit_category")->with($data);
+
     }
 
     /**
@@ -67,9 +112,16 @@ class CandidateCategoryController extends Controller
      * @param  \App\CandidateCategory  $candidateCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CandidateCategory $candidateCategory)
+    public function update(Request $request, $candidateCategory)
     {
-        //
+        $saveCandidateCategory = CandidateCategory::find($candidateCategory);
+
+        $saveCandidateCategory->name = $request->name;
+
+        $saveCandidateCategory->save();
+
+        return redirect()->route('candidate_category.index');
+
     }
 
     /**
