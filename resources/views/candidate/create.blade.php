@@ -31,7 +31,7 @@
                         
 
                          <hr>
-                         <button class="btn btn-primary">Save candidate</button>
+                         <button type="submit" class="btn btn-primary">Save candidate</button>
 
                      </form>
                 </div>

@@ -20,7 +20,7 @@
                          <input type="text" name="name" value="{{  $readCandidateCategory->name }}" class="form-control">                        
 
                          <hr>
-                         <button class="btn btn-primary">Save changes</button>
+                         <button type="submit" class="btn btn-primary">Save changes</button>
 
                      </form>
                 </div>

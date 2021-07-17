@@ -18,7 +18,7 @@
                          <input type="text" name="name" class="form-control">                        
 
                          <hr>
-                         <button class="btn btn-primary">Save position</button>
+                         <button type="submit" class="btn btn-primary">Save position</button>
 
                      </form>
                 </div>

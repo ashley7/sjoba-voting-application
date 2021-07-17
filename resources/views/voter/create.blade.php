@@ -21,7 +21,7 @@
                          <input type="text" name="phone_number" placeholder="0772123456" class="form-control">
 
                          <hr>
-                         <button class="btn btn-primary">Save Voter</button>
+                         <button type="submit" class="btn btn-primary">Save Voter</button>
 
                      </form>
                 </div>

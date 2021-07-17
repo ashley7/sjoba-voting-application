@@ -22,7 +22,7 @@
                          <input type="text" value="{{  $readVote->phone_number }}" name="phone_number" placeholder="0772123456" class="form-control">
 
                          <hr>
-                         <button class="btn btn-primary">Save changes</button>
+                         <button type="submit" class="btn btn-primary">Save changes</button>
 
                      </form>
                 </div>
