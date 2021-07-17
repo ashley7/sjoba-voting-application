@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
@@ -58,6 +58,11 @@
                 text-transform: uppercase;
             }
 
+            #links{
+                font-size: 50px;
+                color: #38c172 !important;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -84,10 +89,34 @@
                     {{ config('app.name') }}
                 </div>
 
-                <div class="links">
-                    <span>2 hours left</span>
+                <div id="links">
+                    <span></span>
                 </div>
             </div>
         </div>
+
+        <script src="{{ asset('js/app.js') }}"></script>
+
+        <script type="text/javascript">
+        function myFunction () {
+
+             $.ajax({
+                    type: "GET",
+                    url: "/vote_time",
+                data: {
+                    
+                },
+                success: function(result){
+
+                    $("#links").text("Election time: "+result);
+
+                }
+
+              })
+            
+        }
+
+        setInterval(function () { myFunction(); }, 6000);
+        </script>
     </body>
 </html>

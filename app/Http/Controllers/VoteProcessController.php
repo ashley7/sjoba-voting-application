@@ -14,7 +14,20 @@ class VoteProcessController extends Controller
      */
     public function index()
     {
-        //
+
+        if(\Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
+       
+        $voting_time = VoteProcess::votingTime();
+
+        $data = [
+        
+            'title' => "Voting time: ".$voting_time,
+
+        ];
+
+        return view("voting_time")->with($data);
+
+
     }
 
     /**
@@ -24,7 +37,7 @@ class VoteProcessController extends Controller
      */
     public function create()
     {
-        //
+        return  VoteProcess::votingTime();
     }
 
     /**
@@ -35,7 +48,22 @@ class VoteProcessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,['starting_time'=>'required']);
+
+        VoteProcess::truncate();
+
+        $saveVoteProcess = new VoteProcess();
+
+        $saveVoteProcess->starting_time = $request->starting_time;
+
+        $saveVoteProcess->save();
+
+        return back();
+
+
+
+
     }
 
     /**

@@ -9,6 +9,12 @@
             <div class="card">
                 <div class="card-body">
 
+                    @if(\Str::contains($voting_time,"now"))
+
+                     <span class="text-success name_size"> <strong> Voting time: {{ $voting_time }} </strong></span>
+
+
+                    @else
 
                     @foreach($readCandidateCategories as $readCandidateCategory)
 
@@ -91,6 +97,8 @@
                       <span class="text-info" id="display{{$readCandidateCategory->id}}"></span>
 
                     @endforeach
+
+                    @endif
                      
 
                      
@@ -112,6 +120,12 @@
      table, th, td {
       border: 1px solid #38c172;
     }
+
+    .name_size{
+        font-size: 30px;
+    }
  </style>
 
 @endsection
+
+ 

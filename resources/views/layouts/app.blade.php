@@ -38,7 +38,11 @@
 
                         @if(!Auth::guest())
 
-                            <li class="nav-item dropdown">
+                           
+
+                          @if(Auth::user()->user_type == "admin")
+
+                           <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link" href="/home">
                                    Home
@@ -54,11 +58,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if(Auth::user()->user_type == "admin")
+                                 
                                     <a class="dropdown-item" href="{{ route('voters.create') }}">
                                         {{ __('Create a voter') }}
                                     </a>
-                                    @endif
+                                   
 
                                     <a class="dropdown-item" href="{{ route('voters.index') }}">
                                         {{ __('View voters register') }}
@@ -68,6 +72,10 @@
                                 </div>
                             </li>
 
+                            @endif
+
+                            @if(Auth::user()->user_type == "admin")
+
                             <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -76,7 +84,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if(Auth::user()->user_type == "admin")
+                                  
                                     <a class="dropdown-item" href="{{ route('candidate_category.create') }}">
                                         {{ __('Create a Position') }}
                                     </a>
@@ -85,7 +93,7 @@
                                         {{ __('Create a candidate') }}
                                     </a>
                                     <hr>
-                                    @endif
+                                  
 
                                     <a class="dropdown-item" href="{{ route('candidate.index') }}">
                                         {{ __('View Candidates') }}
@@ -93,6 +101,8 @@
                                     
                                 </div>
                             </li>
+
+                            @endif
 
 
                             <li class="nav-item dropdown">
@@ -102,6 +112,18 @@
                                 </a>
 
                             </li>
+
+                            @if(Auth::user()->user_type == "admin")
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link" href="{{  route('vote_control.index') }}">
+                                   Voting time
+                                </a>
+
+                            </li>
+
+                            @endif
 
 
                         @endif

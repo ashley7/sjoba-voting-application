@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CandidateCategory;
 use App\Candidate;
+use App\VoteProcess;
 use App\Vote;
 
 class HomeController extends Controller
@@ -27,6 +28,8 @@ class HomeController extends Controller
     public function index()
     {
 
+        if(\Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
+
         $readCandidateCategory = CandidateCategory::get();
 
         $data = [
@@ -45,11 +48,15 @@ class HomeController extends Controller
 
         $readCandidateCategory = CandidateCategory::get();
 
+        $voting_time = VoteProcess::votingTime();
+
         $data = [
 
             'readCandidateCategories' => $readCandidateCategory,
 
             'title' => "BULLOT PAPER",
+
+            'voting_time' => $voting_time
 
         ];
 
