@@ -27,7 +27,17 @@
                                   <td>{{ $position->name }}</td>
                                   @if(Auth::user()->user_type == "admin")                                
                                   <td>
-                                    <a href="{{ route('candidate_category.edit',$position->id) }}" class="btn btn-primary">Edit</a>
+
+                                    <form method="POST" action="{{ route('candidate_category.destroy', $position->id) }}">
+                                        @csrf
+                                        {{ method_filed("DELETE") }}
+
+                                         <a href="{{ route('candidate_category.edit',$position->id) }}" class="btn btn-primary">Edit</a>
+
+                                         <button class="btn btn-danger" type="submit">Remove</button>
+
+                                    </form>
+                                   
                                   </td>
                                 @endif
                               </tr>

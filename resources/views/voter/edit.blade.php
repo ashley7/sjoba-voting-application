@@ -15,6 +15,8 @@
                          @csrf
                          {{ method_field("PATCH") }}
 
+                         
+
                          <label>Voter Name</label>
                          <input type="text" value="{{  $readVote->name }}" name="name" class="form-control">
 

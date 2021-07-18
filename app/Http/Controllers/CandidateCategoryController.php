@@ -132,8 +132,12 @@ class CandidateCategoryController extends Controller
      * @param  \App\CandidateCategory  $candidateCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CandidateCategory $candidateCategory)
+    public function destroy($candidateCategory)
     {
-        //
+        try {
+            CandidateCategory::destroy($candidateCategory);
+        } catch (\Exception $e) {}
+
+        return back();
     }
 }

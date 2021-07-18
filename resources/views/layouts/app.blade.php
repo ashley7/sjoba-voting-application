@@ -99,13 +99,14 @@
                                         {{ __('Create a candidate') }}
                                     </a>
                                     <hr>
-                                  
+
+                                    <a class="dropdown-item" href="{{ route('candidate_category.index') }}">
+                                        {{ __('View position') }}
+                                    </a>                                  
 
                                     <a class="dropdown-item" href="{{ route('candidate.index') }}">
                                         {{ __('View Candidates') }}
-                                    </a> 
-
-                                  
+                                    </a>                                  
                                     
                                 </div>
                             </li>
