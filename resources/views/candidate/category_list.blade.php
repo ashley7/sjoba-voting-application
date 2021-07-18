@@ -30,7 +30,7 @@
 
                                     <form method="POST" action="{{ route('candidate_category.destroy', $position->id) }}">
                                         @csrf
-                                        {{ method_filed("DELETE") }}
+                                        {{ method_field("DELETE") }}
 
                                          <a href="{{ route('candidate_category.edit',$position->id) }}" class="btn btn-primary">Edit</a>
 
