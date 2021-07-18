@@ -36,7 +36,11 @@
 
                                             <a href="{{ route('voters.edit',$voter->id) }}" class="btn btn-primary">Edit</a>
 
-                                            <button onclick="return confirm('Are you sure you want to delete all this voter');" type="submit" class="btn btn-danger">Delete</button>
+                                            @if($voter->user_type == "voter")
+
+                                                <button onclick="return confirm('Are you sure you want to delete all this voter');" type="submit" class="btn btn-danger">Delete</button>
+
+                                            @endif
                                             
                                         </form>
                                         
