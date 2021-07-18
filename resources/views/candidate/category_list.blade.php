@@ -34,7 +34,7 @@
 
                                          <a href="{{ route('candidate_category.edit',$position->id) }}" class="btn btn-primary">Edit</a>
 
-                                         <button class="btn btn-danger" type="submit">Remove</button>
+                                         <button onclick="return confirm('Are you sure you want to delete this position?');" class="btn btn-danger" type="submit">Remove</button>
 
                                     </form>
                                    
