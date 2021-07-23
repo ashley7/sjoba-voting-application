@@ -17,7 +17,7 @@ class VoteController extends Controller
     public function index()
     {
 
-        $voters = User::paginate(50);
+        $voters = User::paginate(200);
 
         $data = [
 
