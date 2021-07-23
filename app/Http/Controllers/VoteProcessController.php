@@ -119,7 +119,7 @@ class VoteProcessController extends Controller
      * @param  \App\VoteProcess  $voteProcess
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VoteProcess $voteProcess)
+    public function destroy($voteProcess)
     {
          try {
 
