@@ -15,6 +15,7 @@
                             <th>NAME</th>
                             <th>PHONE NUMBER</th>
                             @if(Auth::user()->user_type == "admin")
+                            <th>PIN</th>
                               
                                 <th>ACTION</th> 
                             @endif                            
@@ -26,6 +27,7 @@
                                   <td>{{ $voter->name }}</td>
                                   <td>{{ $voter->phone_number }}</td>
                                   @if(Auth::user()->user_type == "admin")
+                                  <td>{{  $voter->pin  }}</td>
                                                                     
                                     <td>
                                         <form method="POST" action="{{ route('voters.destroy',$voter->id) }}">
