@@ -12,7 +12,7 @@
                     @csrf
                     {{ method_field('DELETE') }}
 
-                    <button onclick="return confirm('Are you sure you want to delete all the votes');" class="btn btn-danger">Delete all votes</button>
+                    <!-- <button onclick="return confirm('Are you sure you want to delete all the votes');" class="btn btn-danger">Delete all votes</button> -->
 
                     <hr>
 
