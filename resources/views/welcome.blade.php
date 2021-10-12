@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
-        <link rel="shortcut icon" href="{{ asset('/images/logo.jpeg') }}">
+        <link rel="shortcut icon" href="{{ asset('/images/nup.png') }}">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -90,7 +90,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="/images/logo.jpeg" width="50%">
+                    <img src="/images/nup.png" width="50%">
                    
                 </div>
 
