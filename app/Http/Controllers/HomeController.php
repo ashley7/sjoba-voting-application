@@ -35,7 +35,7 @@ class HomeController extends Controller
 
         $data = [
 
-            'title' => "2021 ELECTION RESULTS",    
+            'title' => env("APP_NAME").", 2021 RESULTS",    
 
             'readCandidateCategories' => $readCandidateCategory,        
 
