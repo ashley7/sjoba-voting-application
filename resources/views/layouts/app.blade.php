@@ -9,7 +9,7 @@
 
     <title>{{ config('app.name') }}</title>    
 
-    <link rel="shortcut icon" href="{{ asset('/images/nup.png') }}">
+    <link rel="shortcut icon" href="{{ asset('/images/logo.png') }}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

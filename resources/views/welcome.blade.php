@@ -90,13 +90,13 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="/images/nup.png" width="50%">
+                    <img src="/images/logo.png" width="50%">
                    
                 </div>
 
                 <div class="title m-b-md">
                     
-                 <strong>  {{ config('app.name') }} 2021 </strong>
+                 <strong>  {{ config('app.name') }} {{date('Y')}} </strong>
                 </div>
 
 

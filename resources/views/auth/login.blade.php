@@ -10,7 +10,7 @@
 
                 <div class="card-body">
 
-                    <center> <img src="/images/nup.png" width="20%"></center>
+                    <center> <img src="/images/logo.png" width="20%"></center>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
