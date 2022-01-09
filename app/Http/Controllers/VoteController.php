@@ -73,9 +73,11 @@ class VoteController extends Controller
 
         $save_user = User::saveUser($request->name,$request->phone_number,$pin,"voter");
 
-        if(!empty($save_user)){    
+        if(!empty($save_user)){ 
 
-            $message = "Hello ".$save_user->name.", Your ".env("APP_NAME")." Voter's account has been created, On the voting day you will use Phone Number: ".$save_user->phone_number." and Pin: ".$save_user->pin." to vote. Do not share your pin. Thank you";
+            $link = $_SERVER['SERVER_NAME'];   
+
+            $message = "Hello ".$save_user->name.", Your ".env("APP_NAME")." Voter's account has been created, On the voting day you will use Phone Number: ".$save_user->phone_number." and Pin: ".$save_user->pin." to vote. Do not share your pin. Thank you. Link: ".$link;
 
  
             $reciever = User::validatePhoneNumber($save_user->phone_number);   
