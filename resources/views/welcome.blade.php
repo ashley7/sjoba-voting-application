@@ -120,6 +120,10 @@
                      
                 </div>
 
+                <center>
+                    <p>Developed by <a href="https://schooltool.lesson.co.ug/">Mpabaisi Technologies</a></p>
+                </center>
+
 
             </div>
         </div>
