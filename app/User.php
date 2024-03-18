@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -49,7 +50,7 @@ class User extends Authenticatable
 
         $saveUser->email_verified_at = now();
 
-        $saveUser->password = \Hash::make($pin);
+        $saveUser->password = Hash::make($pin);
 
         $saveUser->pin = $pin;
 
@@ -95,8 +96,11 @@ class User extends Authenticatable
     public static function uploadFile($file)
     {
        $destinationPath = public_path('files');
+
        $file_url =\Str::random(12).''.time().'.'.$file->getClientOriginalExtension();
+
        $file->move($destinationPath,$file_url);
+       
        return $file_url;
     }
 }

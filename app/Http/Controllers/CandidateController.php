@@ -6,6 +6,7 @@ use App\User;
 use App\Candidate;
 use App\CandidateCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CandidateController extends Controller
 {
@@ -39,7 +40,7 @@ class CandidateController extends Controller
     public function create()
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
+        if(Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
         
         $positions = CandidateCategory::get();
 
@@ -108,7 +109,7 @@ class CandidateController extends Controller
     public function edit($candidate)
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
+        if(Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
         
         $positions = CandidateCategory::get();
 
@@ -170,7 +171,7 @@ class CandidateController extends Controller
     public function destroy( $candidate)
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
+        if(Auth::user()->user_type != "admin") return redirect()->route("candidate.index");
         try {
             Candidate::destroy($candidate);
         } catch (\Exception $e) {}

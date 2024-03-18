@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Vote;
 use App\VoteProcess;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoteProcessController extends Controller
 {
@@ -16,7 +17,7 @@ class VoteProcessController extends Controller
     public function index()
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
+        if(Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
        
         $voting_time = VoteProcess::votingTime();
 

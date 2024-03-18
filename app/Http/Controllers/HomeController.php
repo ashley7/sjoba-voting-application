@@ -8,6 +8,7 @@ use App\Candidate;
 use App\VoteProcess;
 use App\Vote;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
+        if(Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
 
         $readCandidateCategory = CandidateCategory::get();
 
@@ -88,7 +89,7 @@ class HomeController extends Controller
 
         }        
 
-        $saveVote->user_id = \Auth::id();
+        $saveVote->user_id = Auth::id();
 
         $saveVote->candidate_category_id = $readCandidate->candidate_category_id;
 

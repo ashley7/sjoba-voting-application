@@ -96,7 +96,7 @@
 
                 <div class="title m-b-md">
                     
-                 <strong>  {{ config('app.name') }} {{date('Y')}} </strong>
+                 <strong>  {{ config('app.name') }} | {{date('Y')}} ELECTIONS </strong>
                 </div>
 
 
@@ -104,7 +104,7 @@
                     <span></span>
                 </div>
 
-                <hr>
+                <br>
                 <div id="more_links">
 
                      @guest

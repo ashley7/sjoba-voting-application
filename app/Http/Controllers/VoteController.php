@@ -6,6 +6,7 @@ use App\Vote;
 use App\User;
 use Illuminate\Http\Request;
 use App\AfricasTalkingGateway;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
@@ -38,7 +39,7 @@ class VoteController extends Controller
     public function create()
     {
 
-        if(\Auth::user()->user_type != "admin") return redirect()->route("voters.index");
+        if(Auth::user()->user_type != "admin") return redirect()->route("voters.index");
 
         $data = [
 
