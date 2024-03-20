@@ -13,19 +13,31 @@ class VoteProcess extends Model
 
         $readVoteProcess = VoteProcess::get();
 
-        $vote_time = now();
-
         if($readVoteProcess->count() == 1) {
 
             $readVoteProcess = $readVoteProcess->last();
 
-            return Carbon::parse($readVoteProcess->starting_time)->diffForHumans();;
+            if(Carbon::parse($readVoteProcess->starting_time)->isPast() && !Carbon::parse($readVoteProcess->end_time)->isPast())
 
-        }else{
+              return TRUE;
 
-            return now()->diffForHumans();
+        }
 
-        }          
+        return FALSE;          
          
     }
+
+
+    public static function voteTime(){
+
+        $readVoteProcess = VoteProcess::get();
+
+        if($readVoteProcess->count() == 1) 
+
+            return $readVoteProcess->last();        
+
+        return NULL;
+
+    }
+
 }

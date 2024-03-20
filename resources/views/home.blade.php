@@ -36,7 +36,7 @@
 
                       <table class="table">
                             <thead>
-                              <th>CANDIDATE NAME</th> <th><center>CANDIDATE PHOTO</center></th> <th>NUMBER OF VOTE</th>
+                              <th style="width: 50%;">CANDIDATE NAME</th> <th style="width: 25%;"><center>CANDIDATE PHOTO</center></th> <th style="width: 25%;">NUMBER OF VOTES</th>
                             </thead>
 
                             <tbody>

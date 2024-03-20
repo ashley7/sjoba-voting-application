@@ -135,6 +135,8 @@
         <script type="text/javascript">
         function myFunction () {
 
+            $("#links").text("....");
+
              $.ajax({
                     type: "GET",
                     url: "/vote_time",

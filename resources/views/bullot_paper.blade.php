@@ -8,14 +8,7 @@
             <hr>
             <div class="card">
                 <div class="card-body">
-
-                    @if(\Str::contains($voting_time,"now"))
-
-                     <span class="text-success name_size"> <strong> Voting time: {{ $voting_time }} </strong></span>
-
-
-                    @else
-
+                    
                     @foreach($readCandidateCategories as $readCandidateCategory)
 
                     <div class="textsuccess">
@@ -28,7 +21,7 @@
 
                       <table class="table">
                             <thead>
-                              <th>CANDIDATE NAME</th> <th><center>CANDIDATE PHOTO</center></th> <th>VOTE</th>
+                              <th style="width: 50%;">CANDIDATE NAME</th> <th style="width: 25%;"><center>CANDIDATE PHOTO</center></th> <th style="width: 25%;">VOTE</th>
                             </thead>
 
                             <tbody>
@@ -37,7 +30,7 @@
                               <tr>                          
                                
                                 <td>
-                                    <span class="text-success"> <strong> {{ $candidate->name }} </strong></span>
+                                    <span class="text-success"  style="vertical-align: middle; text-align: center;"> <strong> {{ $candidate->name }} </strong></span>
                                 </td>
 
 
@@ -51,9 +44,9 @@
                                 <td>
                                     @if(App\Vote::voted($readCandidateCategory->id,$candidate->id))
 
-                                        <input type="radio" checked name="radio{{$readCandidateCategory->id}}" id="candidate{{$candidate->id}}" value="{{$candidate->id}}">
+                                        <input type="radio" checked name="radio{{$readCandidateCategory->id}}" id="candidate{{$candidate->id}}" value="{{$candidate->id}}" class="form-control" style="vertical-align: middle;">
                                     @else
-                                        <input type="radio" name="radio{{$readCandidateCategory->id}}" id="candidate{{$candidate->id}}" value="{{$candidate->id}}">
+                                        <input type="radio" name="radio{{$readCandidateCategory->id}}" id="candidate{{$candidate->id}}" value="{{$candidate->id}}" class="form-control"  style="vertical-align: middle;">
                                     @endif
                                 </td>
                                  
@@ -66,6 +59,8 @@
                                 $(document).ready(function(){
 
                                         $("#candidate{{$candidate->id}}").click(function(){
+
+                                            $("#display{{$readCandidateCategory->id}}").text("Processing ...");
 
                                             $.ajax({
                                                     type: "POST",
@@ -99,10 +94,6 @@
 
                     @endforeach
 
-                    @endif
-                     
-
-                     
                 </div>
             </div>
         </div>

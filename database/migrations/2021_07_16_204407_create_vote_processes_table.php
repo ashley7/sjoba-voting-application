@@ -17,6 +17,7 @@ class CreateVoteProcessesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->dateTime('starting_time');
+            $table->dateTime('end_time')->nullable();
         });
     }
 

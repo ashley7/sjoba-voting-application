@@ -15,9 +15,8 @@
                             <th>NAME</th>
                             <th>PHONE NUMBER</th>
                             @if(Auth::user()->user_type == "admin")
-                            <th>PIN</th>
-                              
-                                <th>ACTION</th> 
+                            <th>PIN</th>                              
+                            <th>ACTION</th> 
                             @endif                            
                         </thead>
                         <tbody>
@@ -32,14 +31,16 @@
                                     <td>
                                         <form method="POST" action="{{ route('voters.destroy',$voter->id) }}">
                                             @csrf
-                                            {{ method_field("DELETE") }}
+                                            @if(!$voter->voted($voter->id))
+                                                {{ method_field("DELETE") }}
 
-                                            <a href="{{ route('voters.edit',$voter->id) }}" class="btn btn-primary">Edit</a>
+                                                <a href="{{ route('voters.edit',$voter->id) }}" class="btn btn-primary">Edit</a>
 
-                                            @if($voter->user_type == "voter")
+                                                @if($voter->user_type == "voter")
 
-                                                <button onclick="return confirm('Are you sure you want to delete all this voter');" type="submit" class="btn btn-danger">Delete</button>
+                                                    <button onclick="return confirm('Are you sure you want to delete all this voter');" type="submit" class="btn btn-danger">Delete</button>
 
+                                                @endif
                                             @endif
                                             
                                         </form>

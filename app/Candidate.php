@@ -10,4 +10,9 @@ class Candidate extends Model
     {
         return $this->belongsTo(CandidateCategory::class);
     }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
 }

@@ -34,7 +34,9 @@
 
                                          <a href="{{ route('candidate_category.edit',$position->id) }}" class="btn btn-primary">Edit</a>
 
+                                         @if($position->candidates->count() == 0)
                                          <button onclick="return confirm('Are you sure you want to delete this position?');" class="btn btn-danger" type="submit">Remove</button>
+                                         @endif
 
                                     </form>
                                    

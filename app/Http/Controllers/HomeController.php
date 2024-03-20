@@ -8,6 +8,7 @@ use App\Candidate;
 use App\VoteProcess;
 use App\Vote;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -36,7 +37,7 @@ class HomeController extends Controller
 
         $data = [
 
-            'title' => env("APP_NAME").", 2021 RESULTS",    
+            'title' => env("APP_NAME")." ".date("Y")." RESULTS",    
 
             'readCandidateCategories' => $readCandidateCategory,        
 
@@ -50,7 +51,9 @@ class HomeController extends Controller
 
         $readCandidateCategory = CandidateCategory::get();
 
-        $voting_time = VoteProcess::votingTime();
+        $voteTime = VoteProcess::voteTime();
+
+        if(!VoteProcess::votingTime()) return view('not_yet_time')->with(['title'=>'Not yet voting time','voteTime'=>$voteTime]);
 
         $data = [
 
@@ -58,7 +61,7 @@ class HomeController extends Controller
 
             'title' => "BALLOT PAPER",
 
-            'voting_time' => $voting_time
+            'voting_time' => $voteTime,
 
         ];
 
@@ -69,9 +72,15 @@ class HomeController extends Controller
     public function vote(Request $request)
     {
 
+        $vote_time = VoteProcess::voteTime();
+
+        if(Carbon::parse($vote_time->end_time)->isPast())
+
+         return "Vote cast failed, votting ended at ". Carbon::parse($vote_time->end_time)->format('Y-m-d h:i a');
+
         $readCandidate = Candidate::find($request->candidate_selected);
 
-        $check = Vote::where('candidate_category_id',$readCandidate->candidate_category_id)->where('user_id',\Auth::id())->get();
+        $check = Vote::where('candidate_category_id',$readCandidate->candidate_category_id)->where('user_id',Auth::id())->get();
 
         $message = "Failed to make a vote";        
 

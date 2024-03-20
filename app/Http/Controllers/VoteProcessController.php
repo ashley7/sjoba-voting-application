@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vote;
 use App\VoteProcess;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,13 +18,16 @@ class VoteProcessController extends Controller
     public function index()
     {
 
-        if(Auth::user()->user_type != "admin") return redirect()->route("bullot_paper");
+        if(Auth::user()->user_type != "admin") 
+        
+            return redirect()->route("bullot_paper");
        
-        $voting_time = VoteProcess::votingTime();
+        $voting_time = VoteProcess::voteTime();
 
         $data = [
         
-            'title' => "Voting time: ".$voting_time,
+            'title' => "Voting time",
+            'voting_time'=>$voting_time,
 
         ];
 
@@ -40,17 +44,21 @@ class VoteProcessController extends Controller
     public function create()
     {
 
-        $start_time = VoteProcess::votingTime();
+        $vote_time = VoteProcess::voteTime();
 
-        if(\Str::contains($start_time,"ago")) {
+        if(empty($vote_time)) return "Vote time has not yet been established.";
 
-            return "The election started: ".$start_time;
+        if(Carbon::parse($vote_time->end_time)->isPast()) 
+        
+            return "Voting ended ".Carbon::parse($vote_time->end_time)->format('Y-m-d h:i a');
 
-        }else{
+        if(!VoteProcess::votingTime()) 
 
-            return $start_time." to start the election";
+            return empty($vote_time) ? "Voting time is not set":"Voting will start at ". Carbon::parse($vote_time->starting_time)->format('Y-m-d h:i a')." and end ". Carbon::parse($vote_time->end_time)->format('Y-m-d h:i a');
 
-        }
+        else
+
+            return "Voting started ". Carbon::parse($vote_time->starting_time)->diffForHumans()." and will end at ".Carbon::parse($vote_time->end_time)->format('Y-m-d h:i a');
 
     }
 
@@ -65,18 +73,24 @@ class VoteProcessController extends Controller
 
         $this->validate($request,['starting_time'=>'required']);
 
-        VoteProcess::truncate();
+        $voting_times = VoteProcess::get();
 
-        $saveVoteProcess = new VoteProcess();
+        if($voting_times->count() == 0)
+
+            $saveVoteProcess = new VoteProcess();
+
+        else
+
+            $saveVoteProcess = $voting_times->last();
+        
 
         $saveVoteProcess->starting_time = $request->starting_time;
 
+        $saveVoteProcess->end_time = $request->end_time;
+
         $saveVoteProcess->save();
 
-        return back();
-
-
-
+        return view('not_yet_time')->with(['status'=>'Dates updated','title'=>'Votting time','voteTime'=>$saveVoteProcess]);
 
     }
 

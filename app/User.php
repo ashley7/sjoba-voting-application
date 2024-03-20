@@ -103,4 +103,15 @@ class User extends Authenticatable
        
        return $file_url;
     }
+
+    public static function voted($user_id) {
+
+        if (Vote::where('user_id',$user_id)->count() > 0)
+
+            return true;
+
+        return false;
+        
+        
+    }
 }
