@@ -7,6 +7,6 @@
     <p>Voting end time: {{ empty($voteTime) ? "Not set": Carbon\Carbon::parse($voteTime->end_time)->format('Y-m-d h:i a') }}</p>
 </div>
 
-{{ now() }}
+Current time: {{ now() }}
 @endsection
  
