@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
 
-        User::saveUser( "Vincent Otti","0753735383","1237","admin");           
+        User::saveUser( "Vincent Otti","0781240781","1235","admin");           
 
     }
 }
