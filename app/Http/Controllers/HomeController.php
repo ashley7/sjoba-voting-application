@@ -53,6 +53,8 @@ class HomeController extends Controller
 
         $voteTime = VoteProcess::voteTime();
 
+        
+
         if(!VoteProcess::votingTime()) return view('not_yet_time')->with(['title'=>'Not yet voting time','voteTime'=>$voteTime]);
 
         $data = [
